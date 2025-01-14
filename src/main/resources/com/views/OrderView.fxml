@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controllers.OrderController">
+    <!-- Customer Information Section -->
+    <TextField fx:id="nameTextField" promptText="Enter your name" />
+    <TextField fx:id="addressTextField" promptText="Enter your address" />
+
+    <!-- Pizza Selection Section -->
+    <ComboBox fx:id="crustComboBox" promptText="Select Crust" />
+    <ComboBox fx:id="sauceComboBox" promptText="Select Sauce" />
+
+    <!-- Toppings Section -->
+    <CheckBox fx:id="mushroomsCheckBox" text="Mushrooms" />
+    <CheckBox fx:id="pepperoniCheckBox" text="Pepperoni" />
+    <CheckBox fx:id="onionsCheckBox" text="Onions" />
+
+    <!-- Price Display -->
+    <Label style="-fx-font-size: 14px;" text="Total Price:" />
+    <Label fx:id="priceLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="0" />
+
+    <!-- Place Order Button -->
+    <Button onAction="#placeOrder" text="Place Order">
+      <VBox.margin>
+         <Insets bottom="10.0" />
+      </VBox.margin></Button>
+
+    <!-- Payment Section -->
+    <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Select Payment Method:" />
+    <Button fx:id="cardPaymentButton" disable="true" onAction="#handleCardPayment" text="Card Payment">
+      <VBox.margin>
+         <Insets bottom="10.0" />
+      </VBox.margin></Button>
+    <Button fx:id="cashPaymentButton" disable="true" onAction="#handleCashPayment" text="Cash" />
+    <Label fx:id="paymentStatusLabel" style="-fx-text-fill: green;" text="">
+      <VBox.margin>
+         <Insets bottom="10.0" />
+      </VBox.margin></Label>
+
+    <!-- Feedback Section -->
+    <Label text="Provide Feedback:" />
+    <TextArea fx:id="feedbackTextArea" disable="true" prefHeight="100" prefWidth="300" />
+    <Label text="Rate Your Experience:" />
+    <Slider fx:id="ratingSlider" disable="true" majorTickUnit="1" max="5" min="1" showTickLabels="true" snapToTicks="true" />
+    <Button fx:id="submitFeedbackButton" disable="true" onAction="#submitFeedback" text="Submit Feedback" />
+   <padding>
+      <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+   </padding>
+</VBox>
