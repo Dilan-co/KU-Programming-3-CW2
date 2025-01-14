@@ -17,7 +17,7 @@ public class Pizza {
     }
 
     public double calculatePrice() {
-        double basePrice = 8.0;
+        double basePrice = 1500.0;
         basePrice += toppings.length * 1.5;
         return basePrice;
     }

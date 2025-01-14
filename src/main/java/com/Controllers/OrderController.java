@@ -36,7 +36,9 @@ public class OrderController {
     private Label paymentStatusLabel, priceLabel;
 
     private Customer currentCustomer;
-    private double basePrice = 8.00; // Base price for the pizza
+    // Base price for the pizza
+    private double basePrice = 1500.00;
+    private double total = basePrice;
 
     @FXML
     public void initialize() {
@@ -57,18 +59,28 @@ public class OrderController {
         // Add cost for crust
         String crust = crustComboBox.getValue();
         if ("Thin".equals(crust)) {
-            price += 2.00;
+            price += 200.00;
         } else if ("Thick".equals(crust)) {
-            price += 3.00;
+            price += 300.00;
+        }
+
+
+        // Add cost for sauce
+        String sauce = sauceComboBox.getValue();
+        if ("Tomato".equals(sauce)) {
+            price += 150.00;
+        } else if ("Barbecue".equals(sauce)) {
+            price += 200.00;
         }
 
         // Add cost for toppings
-        if (mushroomsCheckBox.isSelected()) price += 1.50;
-        if (pepperoniCheckBox.isSelected()) price += 1.50;
-        if (onionsCheckBox.isSelected()) price += 1.50;
+        if (mushroomsCheckBox.isSelected()) price += 350.00;
+        if (pepperoniCheckBox.isSelected()) price += 250.00;
+        if (onionsCheckBox.isSelected()) price += 200.00;
 
+        total = price;
         // Update the price label
-        priceLabel.setText(String.format("$%.2f", price));
+        priceLabel.setText(String.format("Rs. %.2f", price));
     }
 
     @FXML
@@ -91,19 +103,13 @@ public class OrderController {
         String crust = crustComboBox.getValue();
         String sauce = sauceComboBox.getValue();
 
-        String[] toppings = {
-                mushroomsCheckBox.isSelected() ? "Mushrooms" : null,
-                pepperoniCheckBox.isSelected() ? "Pepperoni" : null,
-                onionsCheckBox.isSelected() ? "Onions" : null,
-        };
+        String[] toppings = {mushroomsCheckBox.isSelected() ? "Mushrooms" : null, pepperoniCheckBox.isSelected() ? "Pepperoni" : null, onionsCheckBox.isSelected() ? "Onions" : null,};
 
         // Remove null toppings
-        toppings = Arrays.stream(toppings)
-                .filter(topping -> topping != null)
-                .toArray(String[]::new);
+        toppings = Arrays.stream(toppings).filter(topping -> topping != null).toArray(String[]::new);
 
         Pizza pizza = new Pizza(crust, sauce, toppings);
-        Order order = new Order(pizza, currentCustomer.getName(), currentCustomer.getAddress());
+        Order order = new Order(pizza, currentCustomer.getName(), currentCustomer.getAddress(), total);
 
         currentCustomer.setCrustPreference(crust);
         currentCustomer.setSaucePreference(sauce);

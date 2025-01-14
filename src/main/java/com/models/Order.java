@@ -6,12 +6,14 @@ public class Order {
     private Pizza pizza;
     private String customerName;
     private String address;
+    private String price;
     private OrderStatus status;
 
-    public Order(Pizza pizza, String customerName, String address) {
+    public Order(Pizza pizza, String customerName, String address, double price) {
         this.pizza = pizza;
         this.customerName = customerName;
         this.address = address;
+        this.price = String.valueOf(price);
         this.status = OrderStatus.PLACED;
     }
 
@@ -20,7 +22,7 @@ public class Order {
     }
 
     public String getOrderDetails() {
-        return "Order for: " + customerName + "\nAddress: " + address + "\nPizza: " + pizza + "\nStatus: " + status;
+        return "Order for: " + customerName + "\nAddress: " + address + "\nPizza: " + pizza +"\nPrice:  Rs. " + price+"0" + "\nStatus: " + status;
     }
 
     public OrderStatus getStatus() {
